@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: latent-store-deployment
+  labels:
+    app: latent-store
+spec:
+  selector:
+    matchLabels:
+      app: latent-store
+  template:
+    metadata:
+      labels:
+        app: latent-store
+    spec:
+      containers:
+      - name: store
+        image: store:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 6379

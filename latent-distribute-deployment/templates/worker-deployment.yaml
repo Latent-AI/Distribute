@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: latent-worker-deployment
+  labels:
+    app: latent-worker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: latent-worker
+  template:
+    metadata:
+      labels:
+        app: latent-worker
+    spec:
+      containers:
+      - name: worker
+        image: worker:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
